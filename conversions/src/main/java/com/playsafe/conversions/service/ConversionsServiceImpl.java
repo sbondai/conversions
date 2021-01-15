@@ -13,4 +13,9 @@ public class ConversionsServiceImpl implements ConversionService {
 		return kelvin - KELVIN_CONSTANT;
 	}
 
+	@Override
+	public double convertDegreetoKelvin(double degree) {
+		return degree + KELVIN_CONSTANT;
+	}
+
 }

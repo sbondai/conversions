@@ -4,4 +4,6 @@ public interface ConversionService {
 
 	double convertKelvintoDegrees(double kelvin);
 
+	double convertDegreetoKelvin(double degree);
+
 }
