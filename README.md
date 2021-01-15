@@ -1,39 +1,29 @@
-**Java Developer Expertise Test (60 min)**
+# Java Developer Expertise Test (60 min)
 
-**Part 1**
-
-Create a Github account on github
-[_https://github.com/_](https://github.com/) or use your existing
-account if you already have one.
+Create a Github account on github [https://github.com/](https://github.com/) or use your existing account if you already have one.
 
 Create a public repository for this project.
 
-Create an initial commit with the expertise test outline (this document)
-in the readme.md
+Create an initial commit with the expertise test outline (this document) in the readme.md
 
 Create frequent commits of your code. (at least 1 commit every 15 min)
 
 Create a service capable of serving the following endpoints:
 
-For all of the below endpoints a log entry needs to be created for their
-execution duration.
+For all of the below endpoints a log entry needs to be created for their execution duration.
 
-**/conversions/ktoc**
+##### /conversions/ktoc
 
-The ktoc endpoint should produce an output amount in celsius when given
-an input amount in kelvin.
+The ktoc endpoint should produce an output amount in celsius when given an input amount in kelvin.
 
-**/conversions/ctok**
+##### /conversions/ctok
 
-The ctok endpoint should produce an output amount in kelvin when given
-an input amount in celsius.
+The ctok endpoint should produce an output amount in kelvin when given an input amount in celsius.
 
-**/conversions/mtok**
+##### /conversions/mtok
 
-The mtok endpoint should produce, when given an input amount in miles,
-an output amount in kilometers.
+The mtok endpoint should produce, when given an input amount in miles, an output amount in kilometers.
 
-**/conversions/ktom**
+##### /conversions/ktom
 
-The ktom endpoint should produce, when given an input amount in
-kilometers, an output amount in miles.
+The ktom endpoint should produce, when given an input amount in kilometers, an output amount in miles.
