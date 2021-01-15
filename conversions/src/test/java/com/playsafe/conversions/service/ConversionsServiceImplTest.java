@@ -19,4 +19,22 @@ public class ConversionsServiceImplTest {
 		assertThat(conversionsService.convertKelvintoDegrees(kelvin)).isEqualTo(1);
 	}
 
+	@Test
+	public void convert_CelciustoKelvin_whenInputIsValid() {
+		double degree = 1;
+		assertThat(conversionsService.convertDegreetoKelvin(degree)).isEqualTo(274.15);
+	}
+
+	@Test
+	public void convert_MilestoKM_whenInputIsValid() {
+		double miles = 1;
+		assertThat(conversionsService.convertMilestoKm(miles)).isEqualTo(1.60934);
+	}
+
+	@Test
+	public void convert_KMtoMileswhenInputIsValid() {
+		double km = 1;
+		assertThat(conversionsService.convertKmtoMiles(km)).isEqualTo(0.621371);
+	}
+
 }

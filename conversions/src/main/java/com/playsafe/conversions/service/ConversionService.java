@@ -6,4 +6,8 @@ public interface ConversionService {
 
 	double convertDegreetoKelvin(double degree);
 
+	double convertMilestoKm(double miles);
+
+	double convertKmtoMiles(double km);
+
 }

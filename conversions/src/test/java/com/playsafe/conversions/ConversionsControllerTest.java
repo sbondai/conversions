@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.playsafe.conversions.error.ApiError;
 import com.playsafe.conversions.utils.Degree;
+import com.playsafe.conversions.utils.Distance;
 import com.playsafe.conversions.utils.Kelvin;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +27,8 @@ public class ConversionsControllerTest {
 
 	public static final String KTOC = "/ktoc";
 	public static final String CTOK = "/ctok";
+	public static final String MTOK = "/mtok";
+	public static final String KTOM = "/ktom";
 
 	@Autowired
 	TestRestTemplate testRestTemplate;
@@ -75,11 +78,48 @@ public class ConversionsControllerTest {
 	}
 
 	@Test
-	public void postUserRequest_whenUserEntersValueWithinRange_receiveOk() {
+	public void postUserRequest_whenUserEntersValueDegreeWithinRange_receiveOk() {
 		Degree degree = createValidDegreeRequest();
 		degree.setEnteredValue(100);
 		ResponseEntity<Object> response = postUserRequest(degree, Object.class, CTOK);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+	}
+
+	@Test
+	public void postUserRequest_whenUserEntersDegreeBelowMinRange_receiveBadRequest() {
+		Degree degree = createValidDegreeRequest();
+		degree.setEnteredValue(-272.16);
+		ResponseEntity<Object> response = postUserRequest(degree, Object.class, CTOK);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+	}
+
+	@Test
+	public void postUserRequest_whenUserEntersDegreeAboveMaxRange_receiveBadRequest() {
+		Degree degree = createValidDegreeRequest();
+		degree.setEnteredValue(726.86);
+		ResponseEntity<Object> response = postUserRequest(degree, Object.class, CTOK);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+	}
+
+	@Test
+	public void postUserRequest_whenUserRequestIsValidDistanceMiles_receiveOK() {
+		Distance miles = createValidDistance();
+		ResponseEntity<Object> response = postUserRequest(miles, Object.class, MTOK);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+	}
+
+	@Test
+	public void postUserRequest_whenUserRequestIsValidDistanceKM_receiveOK() {
+		Distance km = createValidDistance();
+		ResponseEntity<Object> response = postUserRequest(km, Object.class, MTOK);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+	}
+
+	private Distance createValidDistance() {
+
+		Distance miles = new Distance();
+		miles.setEnteredValue(1);
+		return miles;
 	}
 
 	public <T> ResponseEntity<T> postUserRequest(Object request, Class<T> response, String endPoint) {
