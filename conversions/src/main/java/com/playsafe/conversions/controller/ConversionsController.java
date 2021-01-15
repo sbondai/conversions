@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.playsafe.conversions.error.ApiError;
+import com.playsafe.conversions.logging.LogExecutionTime;
 import com.playsafe.conversions.service.ConversionService;
 import com.playsafe.conversions.utils.Degree;
+import com.playsafe.conversions.utils.Distance;
 import com.playsafe.conversions.utils.Kelvin;
 
 @RestController
@@ -31,14 +33,28 @@ public class ConversionsController {
 	ConversionService conversionService;
 
 	@PostMapping("/ktoc")
+	@LogExecutionTime
 	double convertKelvintoCelcius(@Valid @RequestBody Kelvin kelvin) {
 		return conversionService.convertKelvintoDegrees(kelvin.getEnteredValue());
 	}
 
 	@PostMapping("/ctok")
+	@LogExecutionTime
 	double convertDegreestoKelvin(@Valid @RequestBody Degree degree) {
 
 		return conversionService.convertDegreetoKelvin(degree.getEnteredValue());
+	}
+
+	@PostMapping("/mtok")
+	@LogExecutionTime
+	double convertMilestoKm(@Valid @RequestBody Distance miles) {
+		return conversionService.convertMilestoKm(miles.getEnteredValue());
+	}
+
+	@PostMapping("/ktom")
+	@LogExecutionTime
+	double convertKmtoMiles(@Valid @RequestBody Distance km) {
+		return conversionService.convertKmtoMiles(km.getEnteredValue());
 	}
 
 	@ExceptionHandler({ MethodArgumentNotValidException.class })

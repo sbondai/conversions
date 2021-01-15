@@ -111,7 +111,7 @@ public class ConversionsControllerTest {
 	@Test
 	public void postUserRequest_whenUserRequestIsValidDistanceKM_receiveOK() {
 		Distance km = createValidDistance();
-		ResponseEntity<Object> response = postUserRequest(km, Object.class, MTOK);
+		ResponseEntity<Object> response = postUserRequest(km, Object.class, KTOM);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
